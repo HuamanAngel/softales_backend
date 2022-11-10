@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  createtale:
+    image: ${DOCKER_REGISTRY-}createtale
+    build:
+      context: .
+      dockerfile: CreateTale/Dockerfile
+
+  autenticacion:
+    image: ${DOCKER_REGISTRY-}autenticacion
+    build:
+      context: .
+      dockerfile: Autenticacion/Dockerfile
+
