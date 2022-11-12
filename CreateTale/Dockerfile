@@ -1,18 +1,16 @@
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
-EXPOSE 80
-
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-WORKDIR /src
-COPY ./*.sln ./
-COPY ./CreateTale/*.csproj ./CreateTale/
-RUN dotnet restore
-COPY ./CreateTale/. ./CreateTale/
+WORKDIR /source
 
-FROM build AS publish
-WORKDIR /src/CreateTale
-RUN dotnet publish -c Release -o /app --no-restore
+# copy csproj and restore as distinct layers
+COPY *.csproj .
+RUN dotnet restore --use-current-runtime  
 
-FROM base AS run
+# copy everything else and build app
+COPY . .
+RUN dotnet publish -c Release -o /app --use-current-runtime --self-contained false --no-restore
+
+# final stage/image
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
 WORKDIR /app
-COPY --from=publish /app ./
+COPY --from=build /app .
 ENTRYPOINT ["dotnet", "CreateTale.dll"]
