@@ -1,16 +1,18 @@
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 as base
-WORKDIR /app
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-COPY . /src
 WORKDIR /src
-RUN ls
-RUN dotnet build "CreateTale.csproj" -c Release -o /app/build
+COPY ./*.sln ./
+COPY ./CreateTale/*.csproj ./CreateTale/
+RUN dotnet restore
+COPY ./CreateTale/. ./CreateTale/
 
 FROM build AS publish
-RUN dotnet publish "CreateTale.csproj" -c Release -o /app/publish
+WORKDIR /src/CreateTale
+RUN dotnet publish -c Release -o /app --no-restore
 
-FROM base AS final
+FROM base AS run
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --from=publish /app ./
 ENTRYPOINT ["dotnet", "CreateTale.dll"]
