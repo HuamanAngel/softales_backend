@@ -19,6 +19,13 @@ class TalesController extends Controller
             $tales
         ], 200);        
     }
+    public function borrar()
+    {
+        return response()->json([
+            "hola  todod mundo"
+        ], 200);        
+    }
+
 
     /**
      * Store a newly created resource in storage.
