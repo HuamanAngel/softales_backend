@@ -7,13 +7,13 @@ const config = {
     user: process.env.USER,
     password: process.env.PASSWORD,
     options: {
-        trustedConnection: true
+        trustedConnection: false
     },
     driver: 'msnodesqlv8'
 }
 
 
-const connectionString = `server=${config.server};Database=${config.database};Trusted_Connection=Yes;Driver={SQL Server Native Client 11.0}`;
+const connectionString = `Server=${config.server};Database=${config.database};Uid=${config.user};Pwd=${config.password};Driver={SQL Server Native Client 11.0};`;
 
 
 module.exports = {
