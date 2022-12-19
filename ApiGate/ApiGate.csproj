@@ -4,19 +4,15 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>cf77a47b-94f7-4b79-858a-48a4eef4239a</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <OutputType>Library</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CacheManager.Core" Version="1.2.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
     <PackageReference Include="MMLib.SwaggerForOcelot" Version="6.0.0" />
     <PackageReference Include="Ocelot" Version="18.0.0" />
-    <PackageReference Include="Ocelot.Provider.Consul" Version="18.0.0" />
     <PackageReference Include="Ocelot.Provider.Polly" Version="18.0.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
 </Project>

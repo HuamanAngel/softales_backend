@@ -1,0 +1,34 @@
+{
+    "Routes": [
+        {
+            "UpstreamPathTemplate": "/gateway/collection",
+            "UpstreamHttpMethod": [ "GET", "POST" ],
+            "DownstreamPathTemplate": "/api/collection",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "34.133.95.242",
+                    "Port": 80
+                }
+            ],
+            "SwaggerKey": "collection_key",
+        }
+    ],
+
+
+    "SwaggerEndPoints": [
+        {
+            "Key": "collection_key",
+            "TransformByOcelotConfig": true,
+            "Config": [
+                {
+                    "Name": "collection_key.API",
+                    "Version": "1.0"
+                    //"Url": "http://localhost:7240/swagger/v1/swagger.json"
+                }
+            ]
+        }
+    ],
+    "GlobalConfiguration": {
+    }
+}
