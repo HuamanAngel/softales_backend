@@ -30,6 +30,7 @@ const crearUsuario =  async( req=request, res=response ) => {
             if(!err) {
                 res.status(201).json({
                     ok: true,
+                    id,
                     username,
                     email,
                     passwordEncrip,
