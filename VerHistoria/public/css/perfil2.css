@@ -1,0 +1,61 @@
+body{
+    
+  
+}
+
+.bg-primary{
+    /* background: linear-gradient(5deg, #b2eaff 0, #5389f2 50%, #003265 100%) !important; */
+    /* background: rgba(0, 0, 0, 0.65) !important; */
+    background-color: rgba(0, 0, 0, 0.7) !important; 
+}
+
+.btn{
+    border :0;
+}
+.btn-primary{
+    background-color: rgb(59, 77, 240);
+}
+
+.btn-primary:hover{
+    background-color: rgb(59, 77, 240);
+}
+
+#sidebar-container {
+    min-height: 100vh;
+}
+
+#sidebar-container .logo{
+    padding: .875rem  1.25rem
+
+}
+
+#sidebar-container .menu {
+    width: 18rem;
+
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.avatar {
+    max-width: 35px;
+}
+
+#content {
+    overflow-y: auto;
+    height: 100bh;
+    padding-bottom: 5rem;
+}
+
+.custab{
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin: 5% 0;
+    box-shadow: 3px 3px 2px #ccc;
+    transition: 0.5s;
+    }
+.custab:hover{
+    box-shadow: 3px 3px 0px transparent;
+    transition: 0.5s;
+    }
