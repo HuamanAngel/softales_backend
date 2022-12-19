@@ -1,7 +1,5 @@
 FROM ubuntu:20.04
 
-WORKDIR /var/www/html
-
 ENV DEBIAN_FRONTEND noninteractive
 ENV TZ=UTC
 
@@ -36,10 +34,13 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 
+RUN echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
 
 WORKDIR /app
-
-COPY . .
+COPY . /app
+# COPY .env.example /app/.env
+# COPY .env.example /app/.env.prod    
 
 RUN npm install 
-CMD npm start
+CMD node index.js
+EXPOSE 4000
