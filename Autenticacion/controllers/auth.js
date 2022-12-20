@@ -8,6 +8,13 @@ const { connectionString } = require("../database/database");
 
 
 
+
+const renovarToken = (id, token) => {
+    const query = `UPDATE "User" SET "token"='${token}' WHERE "id"='${id}'`;
+    sql.query(connectionString, query);
+}
+
+
 const crearUsuario =  async( req=request, res=response ) => {
 
     const { username, email, password } = req.body;
@@ -19,6 +26,9 @@ const crearUsuario =  async( req=request, res=response ) => {
         const salt = bcrypt.genSaltSync(10);
         passwordEncrip = bcrypt.hashSync( password, salt );
 
+        //JWT
+        const token = await generateJWT( id, username );
+
         //const query = `INSERT INTO "User"(id, username, email, password)
         //                VALUES ('${id}', '${username}', '${email}', '${passwordEncrip}')`;
 
@@ -29,13 +39,10 @@ const crearUsuario =  async( req=request, res=response ) => {
                 END
             ELSE
                 BEGIN
-                    INSERT INTO "User"(id, username, email, password) 
-                    VALUES ('${id}', '${username}', '${email}', '${passwordEncrip}')
+                    INSERT INTO "User"(id, username, email, password, token) 
+                    VALUES ('${id}', '${username}', '${email}', '${passwordEncrip}', '${token}')
                 END`;
 
-
-        //JWT
-        const token = await generateJWT( id, username );
 
 
         sql.query(connectionString, query, (err, resp) => {
@@ -108,6 +115,10 @@ const iniciarSesion = ( req=request , res=response ) => {
 
                     //JWT
                     const token = await generateJWT( resp[0].id, resp[0].username );
+
+                    //console.log(token.length)
+
+                    renovarToken(resp[0].id, token)
 
                     res.status(201).json({
                         ok: true,
