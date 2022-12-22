@@ -1,6 +1,6 @@
 const express = require('express');
 const { check } = require('express-validator');
-const { crearUsuario } = require('../controllers/auth');
+const { crearUsuario, iniciarSesion } = require('../controllers/auth');
 const { validarCampos } = require('../middlewares/validarCampos');
 
 
@@ -16,6 +16,15 @@ router.post('/create',
                 validarCampos
             ],
             crearUsuario);
+
+
+router.post('/login',
+            [
+                check('email', 'EMAIL es requerido').isEmail(),
+                check('password', 'El password debe de tener minimo 8 caracteres').isLength({ min:8 }),
+                validarCampos
+            ],
+            iniciarSesion);
 
 
 
