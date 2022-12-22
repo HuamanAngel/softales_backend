@@ -33,44 +33,44 @@ spec:
         app: "autenticacion"
     spec:
       containers:
-      - name: "softales-backend-1"
-        image: "gcr.io/encoded-aspect-371604/github.com/huamanangel/softales_backend:$SHORT_SHA"
-        env:
-        - name: "BD_NAME"
-          valueFrom:
-            configMapKeyRef:
-              key: "BD_NAME"
-              name: "autenticacion-config-fkru"
-        - name: "SERVER"
-          valueFrom:
-            configMapKeyRef:
-              key: "SERVER"
-              name: "autenticacion-config-fkru"
-        - name: "PORT"
-          valueFrom:
-            configMapKeyRef:
-              key: "PORT"
-              name: "autenticacion-config-fkru"
-        - name: "USER"
-          valueFrom:
-            configMapKeyRef:
-              key: "USER"
-              name: "autenticacion-config-fkru"
-        - name: "PASSWORD"
-          valueFrom:
-            configMapKeyRef:
-              key: "PASSWORD"
-              name: "autenticacion-config-fkru"
-        - name: "SERVER_PORT"
-          valueFrom:
-            configMapKeyRef:
-              key: "SERVER_PORT"
-              name: "autenticacion-config-fkru"
-        - name: "SECRET_JWT"
-          valueFrom:
-            configMapKeyRef:
-              key: "SECRET_JWT"
-              name: "autenticacion-config-fkru"
+        - name: "softales-backend-1"
+          image: "gcr.io/encoded-aspect-371604/github.com/huamanangel/softales_backend:$SHORT_SHA"
+          env:
+            - name: "BD_NAME"
+              valueFrom:
+                configMapKeyRef:
+                  key: "BD_NAME"
+                  name: "autenticacion-config-fkru"
+            - name: "SERVER"
+              valueFrom:
+                configMapKeyRef:
+                  key: "SERVER"
+                  name: "autenticacion-config-fkru"
+            - name: "PORT"
+              valueFrom:
+                configMapKeyRef:
+                  key: "PORT"
+                  name: "autenticacion-config-fkru"
+            - name: "USER"
+              valueFrom:
+                configMapKeyRef:
+                  key: "USER"
+                  name: "autenticacion-config-fkru"
+            - name: "PASSWORD"
+              valueFrom:
+                configMapKeyRef:
+                  key: "PASSWORD"
+                  name: "autenticacion-config-fkru"
+            - name: "SERVER_PORT"
+              valueFrom:
+                configMapKeyRef:
+                  key: "SERVER_PORT"
+                  name: "autenticacion-config-fkru"
+            - name: "SECRET_JWT"
+              valueFrom:
+                configMapKeyRef:
+                  key: "SECRET_JWT"
+                  name: "autenticacion-config-fkru"
 
 ---
 apiVersion: "autoscaling/v2"
@@ -88,12 +88,12 @@ spec:
   minReplicas: 1
   maxReplicas: 5
   metrics:
-  - type: "Resource"
-    resource:
-      name: "cpu"
-      target:
-        type: "Utilization"
-        averageUtilization: 80
+    - type: "Resource"
+      resource:
+        name: "cpu"
+        target:
+          type: "Utilization"
+          averageUtilization: 80
 ---
 apiVersion: "v1"
 kind: "Service"
@@ -104,11 +104,10 @@ metadata:
     app: "autenticacion"
 spec:
   ports:
-  - protocol: "TCP"
-    port: 80
-    targetPort: 4000
+    - protocol: "TCP"
+      port: 80
+      targetPort: 4000
   selector:
     app: "autenticacion"
   type: "LoadBalancer"
   loadBalancerIP: ""
- 

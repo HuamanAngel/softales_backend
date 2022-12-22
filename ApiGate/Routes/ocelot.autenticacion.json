@@ -1,31 +1,31 @@
 {
     "Routes": [
         {
-            "UpstreamPathTemplate": "/api/collection",
+            "UpstreamPathTemplate": "/api/login",
             "UpstreamHttpMethod": [ "POST" ],
-            "DownstreamPathTemplate": "/api/collection",
+            "DownstreamPathTemplate": "/api/auth/login",
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "34.176.107.199",
+                    "Host": "34.176.46.197",
                     "Port": 80
                 }
             ],
-            "SwaggerKey": "collection_post"
+            "SwaggerKey": "login_user"
         },
         {
-            "UpstreamPathTemplate": "/api/tale",
+            "UpstreamPathTemplate": "/api/register",
             "UpstreamHttpMethod": [ "POST" ],
-            "DownstreamPathTemplate": "/api/tale",
+            "DownstreamPathTemplate": "/api/auth/create",
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "34.176.107.199",
+                    "Host": "34.176.46.197",
                     "Port": 80
                 }
             ],
-            "SwaggerKey": "tale_post"
+            "SwaggerKey": "register_user"
         }
-        
+
     ]
 }

@@ -1,0 +1,105 @@
+---
+apiVersion: "v1"
+kind: "Namespace"
+metadata:
+  name: "default-2"
+---
+apiVersion: "v1"
+kind: "ConfigMap"
+metadata:
+  name: "create-tale-a-config-exqj"
+  namespace: "default-2"
+  labels:
+    app: "create-tale-a"
+data:
+  APP_ENV: "local"
+  DB_HOST: "34.122.186.26"
+  DB_DATABASE: "SoftalesBack"
+  DB_USERNAME: "user_admin"
+  DB_PASSWORD: "zb.4h:SqQsx&7Aty"
+---
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "create-tale-a"
+  namespace: "default-2"
+  labels:
+    app: "create-tale-a"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: "create-tale-a"
+  template:
+    metadata:
+      labels:
+        app: "create-tale-a"
+    spec:
+      containers:
+        - name: "softales-backend-1"
+          image: "gcr.io/encoded-aspect-371604/github.com/huamanangel/softales_backend:$SHORT_SHA"
+          env:
+            - name: "APP_ENV"
+              valueFrom:
+                configMapKeyRef:
+                  key: "APP_ENV"
+                  name: "create-tale-a-config-exqj"
+            - name: "DB_HOST"
+              valueFrom:
+                configMapKeyRef:
+                  key: "DB_HOST"
+                  name: "create-tale-a-config-exqj"
+            - name: "DB_DATABASE"
+              valueFrom:
+                configMapKeyRef:
+                  key: "DB_DATABASE"
+                  name: "create-tale-a-config-exqj"
+            - name: "DB_USERNAME"
+              valueFrom:
+                configMapKeyRef:
+                  key: "DB_USERNAME"
+                  name: "create-tale-a-config-exqj"
+            - name: "DB_PASSWORD"
+              valueFrom:
+                configMapKeyRef:
+                  key: "DB_PASSWORD"
+                  name: "create-tale-a-config-exqj"
+---
+apiVersion: "autoscaling/v2"
+kind: "HorizontalPodAutoscaler"
+metadata:
+  name: "create-tale-a-hpa-tr6i"
+  namespace: "default-2"
+  labels:
+    app: "create-tale-a"
+spec:
+  scaleTargetRef:
+    kind: "Deployment"
+    name: "create-tale-a"
+    apiVersion: "apps/v1"
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+    - type: "Resource"
+      resource:
+        name: "cpu"
+        target:
+          type: "Utilization"
+          averageUtilization: 80
+---
+apiVersion: "v1"
+kind: "Service"
+metadata:
+  name: "create-tale-a-service"
+  namespace: "default-2"
+  labels:
+    app: "create-tale-a"
+spec:
+  ports:
+    - protocol: "TCP"
+      port: 80
+      targetPort: 8000
+  selector:
+    app: "create-tale-a"
+  type: "LoadBalancer"
+  loadBalancerIP: ""

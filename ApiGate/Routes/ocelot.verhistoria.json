@@ -1,26 +1,26 @@
 {
     "Routes": [
         {
-            "UpstreamPathTemplate": "/gateway/collection",
+            "UpstreamPathTemplate": "/api/collection",
             "UpstreamHttpMethod": [ "GET" ],
             "DownstreamPathTemplate": "/api/collection",
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "34.27.201.133",
+                    "Host": "34.176.238.99",
                     "Port": 80
                 }
             ],
             "SwaggerKey": "collection_get"
         },
         {
-            "UpstreamPathTemplate": "/gateway/tale",
+            "UpstreamPathTemplate": "/api/tale",
             "UpstreamHttpMethod": [ "GET" ],
             "DownstreamPathTemplate": "/api/tale",
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "34.27.201.133",
+                    "Host": "34.176.238.99",
                     "Port": 80
                 }
             ],

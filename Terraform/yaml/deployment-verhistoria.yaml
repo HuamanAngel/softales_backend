@@ -1,0 +1,105 @@
+---
+apiVersion: "v1"
+kind: "Namespace"
+metadata:
+  name: "default-4"
+---
+apiVersion: "v1"
+kind: "ConfigMap"
+metadata:
+  name: "ver-historia-a-config-jpyg"
+  namespace: "default-4"
+  labels:
+    app: "ver-historia-a"
+data:
+  APP_ENV: "local"
+  DB_HOST: "34.122.186.26"
+  DB_DATABASE: "SoftalesBack"
+  DB_USERNAME: "user_admin"
+  DB_PASSWORD: "zb.4h:SqQsx&7Aty"
+---
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "ver-historia-a"
+  namespace: "default-4"
+  labels:
+    app: "ver-historia-a"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: "ver-historia-a"
+  template:
+    metadata:
+      labels:
+        app: "ver-historia-a"
+    spec:
+      containers:
+        - name: "softales-backend-1"
+          image: "gcr.io/encoded-aspect-371604/github.com/huamanangel/softales_backend:$SHORT_SHA"
+          env:
+            - name: "APP_ENV"
+              valueFrom:
+                configMapKeyRef:
+                  key: "APP_ENV"
+                  name: "ver-historia-a-config-jpyg"
+            - name: "DB_HOST"
+              valueFrom:
+                configMapKeyRef:
+                  key: "DB_HOST"
+                  name: "ver-historia-a-config-jpyg"
+            - name: "DB_DATABASE"
+              valueFrom:
+                configMapKeyRef:
+                  key: "DB_DATABASE"
+                  name: "ver-historia-a-config-jpyg"
+            - name: "DB_USERNAME"
+              valueFrom:
+                configMapKeyRef:
+                  key: "DB_USERNAME"
+                  name: "ver-historia-a-config-jpyg"
+            - name: "DB_PASSWORD"
+              valueFrom:
+                configMapKeyRef:
+                  key: "DB_PASSWORD"
+                  name: "ver-historia-a-config-jpyg"
+---
+apiVersion: "autoscaling/v2"
+kind: "HorizontalPodAutoscaler"
+metadata:
+  name: "ver-historia-a-hpa-wezo"
+  namespace: "default-4"
+  labels:
+    app: "ver-historia-a"
+spec:
+  scaleTargetRef:
+    kind: "Deployment"
+    name: "ver-historia-a"
+    apiVersion: "apps/v1"
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+    - type: "Resource"
+      resource:
+        name: "cpu"
+        target:
+          type: "Utilization"
+          averageUtilization: 80
+---
+apiVersion: "v1"
+kind: "Service"
+metadata:
+  name: "ver-historia-a-service"
+  namespace: "default-4"
+  labels:
+    app: "ver-historia-a"
+spec:
+  ports:
+    - protocol: "TCP"
+      port: 80
+      targetPort: 8000
+  selector:
+    app: "ver-historia-a"
+  type: "LoadBalancer"
+  loadBalancerIP: ""
