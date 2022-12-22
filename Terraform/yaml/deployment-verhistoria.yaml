@@ -13,10 +13,10 @@ metadata:
     app: "ver-historia-a"
 data:
   APP_ENV: "local"
-  DB_HOST: "34.122.186.26"
+  DB_HOST: "localhost"
   DB_DATABASE: "SoftalesBack"
-  DB_USERNAME: "user_admin"
-  DB_PASSWORD: "zb.4h:SqQsx&7Aty"
+  DB_USERNAME: "sa"
+  DB_PASSWORD: "oxipusio"
 ---
 apiVersion: "apps/v1"
 kind: "Deployment"

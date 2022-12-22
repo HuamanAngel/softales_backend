@@ -1,0 +1,65 @@
+---
+apiVersion: "v1"
+kind: "Namespace"
+metadata:
+  name: "default-5"
+---
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "apigate"
+  namespace: "default-5"
+  labels:
+    app: "apigate"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: "apigate"
+  template:
+    metadata:
+      labels:
+        app: "apigate"
+    spec:
+      containers:
+        - name: "softales-backend-1"
+          image: "gcr.io/encoded-aspect-371604/github.com/huamanangel/softales_backend:$SHORT_SHA"
+---
+apiVersion: "autoscaling/v2"
+kind: "HorizontalPodAutoscaler"
+metadata:
+  name: "apigate-hpa-npl6"
+  namespace: "default-5"
+  labels:
+    app: "apigate"
+spec:
+  scaleTargetRef:
+    kind: "Deployment"
+    name: "apigate"
+    apiVersion: "apps/v1"
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+    - type: "Resource"
+      resource:
+        name: "cpu"
+        target:
+          type: "Utilization"
+          averageUtilization: 80
+---
+apiVersion: "v1"
+kind: "Service"
+metadata:
+  name: "apigate-service"
+  namespace: "default-5"
+  labels:
+    app: "apigate"
+spec:
+  ports:
+    - protocol: "TCP"
+      port: 80
+      targetPort: 80
+  selector:
+    app: "apigate"
+  type: "LoadBalancer"
+  loadBalancerIP: ""

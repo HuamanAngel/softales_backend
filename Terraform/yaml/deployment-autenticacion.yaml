@@ -8,10 +8,10 @@ metadata:
     app: "autenticacion"
 data:
   BD_NAME: "SoftalesBack"
-  SERVER: "34.122.186.26"
+  SERVER: "localhost"
   PORT: "1433"
-  USER: "user_admin"
-  PASSWORD: "zb.4h:SqQsx&7Aty"
+  USER: "sa"
+  PASSWORD: "oxipusio"
   SERVER_PORT: "4000"
   SECRET_JWT: "softales-ArquitecturaDeSoftware"
 ---

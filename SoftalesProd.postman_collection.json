@@ -1,0 +1,261 @@
+{
+	"info": {
+		"_postman_id": "cd460407-0e64-4fdf-b7cd-613fec279e08",
+		"name": "SoftalesProd",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CreateUser",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"santos\",\r\n    \"email\":\"mandarina@gmail.com\",\r\n    \"password\":\"santoschocano\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://34.176.95.67/api/register",
+					"protocol": "http",
+					"host": [
+						"34",
+						"176",
+						"95",
+						"67"
+					],
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LoginUser",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"mandarina@gmail.com\",\r\n    \"password\":\"santoschocano\"\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://34.176.95.67/api/login",
+					"protocol": "http",
+					"host": [
+						"34",
+						"176",
+						"95",
+						"67"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ListCollection",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://34.176.95.67/api/collection",
+					"protocol": "http",
+					"host": [
+						"34",
+						"176",
+						"95",
+						"67"
+					],
+					"path": [
+						"api",
+						"collection"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ListTale",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://34.176.95.67/api/collection",
+					"protocol": "http",
+					"host": [
+						"34",
+						"176",
+						"95",
+						"67"
+					],
+					"path": [
+						"api",
+						"collection"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "StoreTale",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tal_titl\":\"Larry\",\r\n    \"tal_desc\":\"Esta es la historia de larry\",\r\n    \"tal_cont\":\"Aca va todo el contenido html\",\r\n    \"col_id\":4\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://34.176.95.67/api/tale",
+					"protocol": "http",
+					"host": [
+						"34",
+						"176",
+						"95",
+						"67"
+					],
+					"path": [
+						"api",
+						"tale"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "StoreCollection",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Authorization",
+						"value": "bearer vaca",
+						"type": "default",
+						"disabled": true
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"col_titl\":\"Cuentos de la cripta Temp 2\",\r\n    \"col_desc\":\"Todos los cuentos de la cripta temporada 2\",\r\n    \"col_cate\":\"Terror\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://34.176.95.67/api/collection",
+					"protocol": "http",
+					"host": [
+						"34",
+						"176",
+						"95",
+						"67"
+					],
+					"path": [
+						"api",
+						"collection"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwLjdnZjZmNmUwZGRhNDQiLCJuYW1lIjoic2FudG9zIiwiaWF0IjoxNjcxNzMwMjE4LCJleHAiOjE2NzIzMzUwMTh9.9ViCyERUqdLZQ7nkstPu_aeVAWdkL4W7JvoFyVF9uRo",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
