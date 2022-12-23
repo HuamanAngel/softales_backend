@@ -22,7 +22,7 @@ class TalesController extends Controller
     public function borrar()
     {
         return response()->json([
-            "hola  todod mundo"
+            "hola  todod mundo - Prueba"
         ], 200);        
     }
 
