@@ -7,6 +7,7 @@ use App\Models\Tale;
 use Tests\TestCase;
 use App\Http\Controllers\TalesController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class TalesTest extends TestCase
@@ -21,15 +22,33 @@ class TalesTest extends TestCase
 
 
     /** @test */ 
-    public function IndexTales()
+    public function IndexTalesTest()
     {
         $coll = Tale::all();
         $TalController = new TalesController();
         $response = $TalController->index();
-        //$this->assertTrue(true);
         $responseContent = $response->getOriginalContent()[0];
-
         $this->assertEquals(200, $response->status());
         $this->assertEquals((string) $coll,(string) $responseContent);
+    }
+
+    public function BorrarTalesTest()
+    {
+        $response = $TalController->index();
+        $responseContent = $response->getOriginalContent()[0];
+        $this->assertEquals(200, $response->status());
+        $this->assertEquals("hola  todod mundo",(string) $responseContent);
+    }
+
+    public function storeTaleTest()
+    {
+        $request = new Request([
+            "algo"=>"awdwa"
+        ]);
+        $TalController = new TalesController();
+        $response = $TalController->store($request);
+        $responseContent = $response->getOriginalContent();
+        $this->assertEquals(200, $response->status());
+        $this->assertEquals("Insertar token Bearer", $responseContent["message"]);
     }
 }
