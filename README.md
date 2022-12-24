@@ -15,6 +15,11 @@ Nota : Actualmente las APIS apuntan al APIGATEWAY de produccion
 
 ## OPCION 2 : Localmente sin infraestructura, por separado
 
+* Poner a produccion una base de datos SQL Server.
+
+Correr el sql de /Autenticacion/
+Correr la migraciones de /CreateTale/
+
 Nota : Los dockerfile solo construyen las aplicaciones, la base de datos debe estar en produccion
 
 Microservicio : Autenticacion
@@ -85,6 +90,11 @@ La url que se abre es : http://localhost:9896/
 <br />
 
 ## OPCION 3 : Levantar en Google Cloud Plataform con Infraestructura
+
+* Poner a produccion una base de datos SQL Server.
+
+Correr el sql de /Autenticacion/
+Correr la migraciones de /CreateTale/
 
 * Instalar Terraform
 * Instalar Google Cloud SDK
