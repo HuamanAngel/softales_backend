@@ -45,4 +45,18 @@ class CollectionTest extends TestCase
         $this->assertEquals(200, $response->status());
         $this->assertEquals("Insertar token Bearer", $responseContent["message"]);
     }
+
+    public function storeCollectionTest1()
+    {
+        $request = new Request([
+            "col_titl"=>"Cuentos de la cripta Temp 2",
+            "col_desc"=>"Todos los cuentos de la cripta temporada 2",
+            "col_cate"=>"Terror"
+        ]);
+        $CollController = new CollectionController();
+        $response = $CollController->store($request);
+        $responseContent = $response->getOriginalContent();
+        $this->assertEquals(200, $response->status());
+        $this->assertEquals("Insertar token Bearer", $responseContent["message"]);
+    }
 }

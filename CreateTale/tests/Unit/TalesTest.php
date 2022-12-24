@@ -51,4 +51,19 @@ class TalesTest extends TestCase
         $this->assertEquals(200, $response->status());
         $this->assertEquals("Insertar token Bearer", $responseContent["message"]);
     }
+
+    public function storeTaleTest1()
+    {
+        $request = new Request([
+            "tal_titl"=>"Larry",
+            "tal_desc"=>"Esta es la historia de larry",
+            "tal_cont"=>"Aca va todo el contenido html",
+            "col_id"  =>4
+        ]);
+        $TalController = new TalesController();
+        $response = $TalController->store($request);
+        $responseContent = $response->getOriginalContent();
+        $this->assertEquals(200, $response->status());
+        $this->assertEquals("Insertar token Bearer", $responseContent["message"]);
+    }
 }
