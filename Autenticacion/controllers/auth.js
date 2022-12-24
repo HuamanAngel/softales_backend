@@ -130,7 +130,7 @@ const iniciarSesion = ( req=request , res=response ) => {
                 } else {
                     res.status(400).json({
                         ok: false,
-                        msg: 'Contraceña invalida'
+                        msg: 'Credenciales incorrectas'
                     })
                 }
 
